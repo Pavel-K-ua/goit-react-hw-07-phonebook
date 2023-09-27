@@ -3,15 +3,24 @@ import AddContacts from './AddContacts/AddContacts';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts, selectFilter } from 'redux/selectors';
 import FilterContacts from './FilterContacts/FilterContacts';
-import { deleteContact, setContacts } from 'redux/slice';
+import {
+  addContactThunk,
+  deleteContactThunk,
+  fetchContactsThunk,
+} from 'redux/operations';
+import { useEffect } from 'react';
 
 const App = () => {
   const contacts = useSelector(selectContacts);
   const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(fetchContactsThunk());
+  }, [dispatch]);
+
   const handleDeleteContact = id => {
-    dispatch(deleteContact(id));
+    dispatch(deleteContactThunk(id));
   };
 
   const handleAddContact = contact => {
@@ -22,7 +31,7 @@ const App = () => {
     if (item) {
       alert(`${contact.name} is already in contacts`);
     } else {
-      dispatch(setContacts(contact));
+      dispatch(addContactThunk(contact));
     }
   };
 

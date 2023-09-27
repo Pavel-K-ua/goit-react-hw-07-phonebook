@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { nanoid } from '@reduxjs/toolkit';
 
 const AddContacts = ({ addContact }) => {
   const [state, setState] = useState({ name: '', number: '', id: '' });
 
   const handleChangeInput = e => {
-    setState({ ...state, [e.target.name]: e.target.value, id: nanoid() });
+    setState({ ...state, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = e => {
