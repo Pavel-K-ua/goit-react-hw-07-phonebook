@@ -24,7 +24,7 @@ export const addContactThunk = createAsyncThunk(
       console.log(data.data);
       return data.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue('Contact is exist');
     }
   }
 );

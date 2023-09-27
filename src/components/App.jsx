@@ -1,7 +1,12 @@
 import AddContacts from './AddContacts/AddContacts';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts, selectFilter } from 'redux/selectors';
+import {
+  selectContacts,
+  selectError,
+  selectFilter,
+  selectLoading,
+} from 'redux/selectors';
 import FilterContacts from './FilterContacts/FilterContacts';
 import {
   addContactThunk,
@@ -13,6 +18,10 @@ import { useEffect } from 'react';
 const App = () => {
   const contacts = useSelector(selectContacts);
   const filter = useSelector(selectFilter);
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
+  console.log(loading);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -48,7 +57,8 @@ const App = () => {
 
       <h2>Contacts</h2>
       <FilterContacts />
-
+      {loading && <h2>Loading</h2>}
+      {/* {error && <h1>{error}</h1>} */}
       <ul>
         {filteredContactsArr(contacts, filter).map(contact => (
           <li key={contact.id}>
