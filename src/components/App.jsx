@@ -3,7 +3,7 @@ import AddContacts from './AddContacts/AddContacts';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectContacts,
-  selectError,
+  // selectError,
   selectFilter,
   selectLoading,
 } from 'redux/selectors';
@@ -19,7 +19,7 @@ const App = () => {
   const contacts = useSelector(selectContacts);
   const filter = useSelector(selectFilter);
   const loading = useSelector(selectLoading);
-  const error = useSelector(selectError);
+  // const error = useSelector(selectError);
   console.log(loading);
 
   const dispatch = useDispatch();
